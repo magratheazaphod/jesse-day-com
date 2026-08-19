@@ -24,7 +24,7 @@ the existing Pages project, not a migration.
 
 ## Content direction
 
-Tagline: **"Building AI Products + Scrabble Grandmaster"**.
+Tagline: **"Building AI products. World Scrabble Grandmaster."**
 
 **Grandmaster is a WESPA title** - the World English-Language Scrabble Players
 Association, the international body, which runs a formal titles system. It is
