@@ -26,6 +26,10 @@ the existing Pages project, not a migration.
 
 Tagline: **"Building AI Products + Scrabble Grandmaster"**.
 
+**Grandmaster is a WESPA title** - the World English-Language Scrabble Players
+Association, the international body, which runs a formal titles system. It is
+not a NASPA thing; NASPA has no such title. Do not soften or hedge it.
+
 Two components at minimum when the real site is built:
 
 1. **AI projects portfolio** - Woogles.io, the ad-spend forecasting platform, the
