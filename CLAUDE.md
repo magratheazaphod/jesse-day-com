@@ -2,8 +2,12 @@
 
 This repo is my personal website, served at **jesse-day.com**. It is **public**.
 
-Current state: a single placeholder landing page. `PLAN.md` has the original
-build plan and is still the reference for what comes next.
+Current state: a single placeholder landing page.
+
+`PLAN.md` is the original build plan. It is kept on disk but **gitignored and
+not published** - it discusses the domain squatter and the search-disambiguation
+problem, which is fine as working notes and needless on a public profile. Its
+Cloudflare Pages steps are superseded; see Stack below.
 
 ## Stack
 
@@ -12,8 +16,9 @@ Static HTML and CSS. No framework, no build step, no runtime dependencies.
 - `public/` - **everything served at the domain.** Site files go here and
   nowhere else; repo docs stay at the root so they are not served.
 - `public/index.html`, `public/style.css`, `public/hero.jpg`
+- `public/og.jpg` - 1200x630 link-preview card, generated from `hero.jpg`
 - `wrangler.jsonc` - Cloudflare Workers config
-- `package.json` - pins wrangler; there is no build step
+- `package.json` + `package-lock.json` - pins wrangler; there is no build step
 
 Deployed by **Cloudflare Workers (Static Assets)**, git-connected to this repo.
 Pushing to `main` deploys; Cloudflare runs `npx wrangler deploy`, no build
@@ -23,8 +28,8 @@ command.
 Cloudflare serves `public/` and runs no code. Add `main` if it ever needs
 server-side logic.
 
-**This is Workers, not Cloudflare Pages.** Pages was the original plan in
-`PLAN.md` and that is now out of date. Cloudflare's docs tell new projects to
+**This is Workers, not Cloudflare Pages.** Pages was the original plan and is
+now out of date. Cloudflare's docs tell new projects to
 use Workers, and state that all their investment and feature work goes to
 Workers while Pages is merely kept working. Do not migrate this back to Pages.
 
@@ -84,5 +89,5 @@ Full-bleed background photo behind a short block of text.
   `jesseday.com` is a squatter's parked lander. Never link to it, and watch for
   tooling that autocorrects to it.
 - Site files belong in `public/`. Anything added to the repo root is not served -
-  which is deliberate for `CLAUDE.md`, `PLAN.md` and `README.md`, and a bug for
-  anything else.
+  which is deliberate for `CLAUDE.md` and `README.md`, and a bug for anything
+  else.

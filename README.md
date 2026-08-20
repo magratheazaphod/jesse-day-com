@@ -13,8 +13,8 @@ static `index.html` plus one stylesheet, served as-is.
 | `public/index.html` | The page |
 | `public/style.css` | The only stylesheet |
 | `public/hero.jpg` | Background photo (see credit below) |
+| `public/og.jpg` | Link-preview card, generated from `hero.jpg` |
 | `wrangler.jsonc` | Cloudflare Workers config |
-| `PLAN.md` | The build plan this repo was set up from |
 
 Keep site files in `public/`. Repo docs live at the root precisely so they are
 not served.
