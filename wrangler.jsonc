@@ -1,0 +1,12 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "jesse-day-com",
+  "compatibility_date": "2026-08-19",
+
+  // Assets-only Worker: no `main` entry point, so Cloudflare just serves
+  // everything in ./public as a static site. Add `main` here if this ever
+  // needs server-side logic.
+  "assets": {
+    "directory": "./public"
+  }
+}

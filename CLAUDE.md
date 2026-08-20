@@ -7,20 +7,33 @@ build plan and is still the reference for what comes next.
 
 ## Stack
 
-Static HTML and CSS. No framework, no build step, no dependencies.
+Static HTML and CSS. No framework, no build step, no runtime dependencies.
 
-- `index.html` - the page
-- `style.css` - the only stylesheet
-- `hero.jpg` - background photo
+- `public/` - **everything served at the domain.** Site files go here and
+  nowhere else; repo docs stay at the root so they are not served.
+- `public/index.html`, `public/style.css`, `public/hero.jpg`
+- `wrangler.jsonc` - Cloudflare Workers config
+- `package.json` - pins wrangler; there is no build step
 
-Deployed by Cloudflare Pages, git-connected to this repo: production branch
-`main`, no build command, output directory `/`. Pushing to `main` deploys.
+Deployed by **Cloudflare Workers (Static Assets)**, git-connected to this repo.
+Pushing to `main` deploys; Cloudflare runs `npx wrangler deploy`, no build
+command.
 
-Preview locally with `python3 -m http.server 8000`.
+`wrangler.jsonc` has no `main` entry point, making this an assets-only Worker -
+Cloudflare serves `public/` and runs no code. Add `main` if it ever needs
+server-side logic.
+
+**This is Workers, not Cloudflare Pages.** Pages was the original plan in
+`PLAN.md` and that is now out of date. Cloudflare's docs tell new projects to
+use Workers, and state that all their investment and feature work goes to
+Workers while Pages is merely kept working. Do not migrate this back to Pages.
+
+Preview locally with `npm install && npm run dev` (wrangler dev). `python3 -m
+http.server` from inside `public/` is the zero-dependency alternative.
 
 A static site generator (Astro or Eleventy) is a later call, once there is more
 than one page and a header is being repeated. That is a build-command change on
-the existing Pages project, not a migration.
+the existing project, not a migration.
 
 ## Content direction
 
@@ -70,6 +83,6 @@ Full-bleed background photo behind a short block of text.
 - **The domain is `jesse-day.com`, with the hyphen.** The unhyphenated
   `jesseday.com` is a squatter's parked lander. Never link to it, and watch for
   tooling that autocorrects to it.
-- The Pages project is permanently either Direct Upload or Git-connected. It is
-  git-connected; switching would mean deleting the project and re-attaching the
-  custom domain.
+- Site files belong in `public/`. Anything added to the repo root is not served -
+  which is deliberate for `CLAUDE.md`, `PLAN.md` and `README.md`, and a bug for
+  anything else.

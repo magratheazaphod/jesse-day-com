@@ -1,0 +1,13 @@
+{
+  "name": "jesse-day-com",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Source for jesse-day.com",
+  "scripts": {
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy"
+  },
+  "devDependencies": {
+    "wrangler": "^4.124.0"
+  }
+}
