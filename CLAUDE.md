@@ -48,6 +48,11 @@ Tagline: **"Building AI products. World Scrabble Grandmaster."**
 Association, the international body, which runs a formal titles system. It is
 not a NASPA thing; NASPA has no such title. Do not soften or hedge it.
 
+WESPA profile: <https://wespa.xerafin.net/player.html?id=1420> (WESPA ID 1420).
+The landing page links to it as **"Scrabble"** - deliberately plain, since
+"WESPA Profile" means nothing to a recruiter. The page is JS-rendered, so
+fetching it without a browser returns an empty loading state.
+
 Two components at minimum when the real site is built:
 
 1. **AI projects portfolio** - Woogles.io, the ad-spend forecasting platform, the
