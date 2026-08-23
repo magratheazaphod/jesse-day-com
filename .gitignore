@@ -17,3 +17,19 @@ dist/
 
 # Build plan - kept locally, not published
 PLAN.md
+
+# Working artifacts - never publish. See .githooks/pre-commit.
+NOTES*.md
+TODO*.md
+SCRATCH*.md
+HANDOFF*.md
+DRAFT*.md
+CONTEXT*.md
+TRANSCRIPT*.md
+scratch/
+*.scratch.*
+*.bak
+*.backup.*
+*.orig
+*.bundle
+.claude/

@@ -82,6 +82,36 @@ Full-bleed background photo behind a short block of text.
 - **Attribution stays in the page footer** for anything under CC BY / CC BY-SA,
   and the credit is recorded in `README.md`. Strip EXIF before committing.
 
+## Publishing discipline
+
+**This repo is public and git history is permanent.** PLAN.md was published
+here once and removing it took a history rewrite and a force-push, which still
+left the old commit fetchable by SHA until GitHub garbage-collects. Assume
+anything committed is public forever.
+
+So: **working artifacts never get committed.** Plans, notes, handoffs, drafts,
+context dumps, transcripts, backups, scratch files - anything written while
+building the site rather than being part of it. Keep them on disk; they are
+gitignored.
+
+Two mechanisms enforce this, and neither is optional:
+
+1. **`public/` is the only thing served.** The Worker has no `main`, so
+   Cloudflare serves `public/` and nothing else. Repo docs at the root are
+   unreachable from the web by construction, not by convention.
+2. **`.githooks/pre-commit` blocks artifacts at commit time.** It rejects
+   artifact-shaped filenames anywhere in the tree, and any *new* path at the
+   repo root that is not on its allowlist. Enabled by `scripts/setup.sh`
+   (`core.hooksPath`), so it survives a fresh clone - run that once after
+   cloning.
+
+The override is `ALLOW_ARTIFACTS=1 git commit`. If you reach for it, the file
+is about to become permanently public - be sure that is what you want, and add
+it to the allowlist rather than overriding repeatedly.
+
+Verify a deploy with `./scripts/check-site.sh`, which checks the redirect,
+HSTS, assets, certificate, and that repo docs return 404.
+
 ## Guardrails
 
 - **Never mix this repo with `job-search`.** That one is private for good reason:

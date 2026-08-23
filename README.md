@@ -15,6 +15,8 @@ static `index.html` plus one stylesheet, served as-is.
 | `public/hero.jpg` | Background photo (see credit below) |
 | `public/og.jpg` | Link-preview card, generated from `hero.jpg` |
 | `wrangler.jsonc` | Cloudflare Workers config |
+| `.githooks/` | pre-commit guardrail (see below) |
+| `scripts/` | `setup.sh` (enable hooks), `check-site.sh` (verify a deploy) |
 
 Keep site files in `public/`. Repo docs live at the root precisely so they are
 not served.
@@ -39,6 +41,7 @@ custom-domain setup on the Worker.
 ## Working on it locally
 
 ```sh
+./scripts/setup.sh   # once per clone - enables the pre-commit guardrail
 npm install
 npm run dev
 ```
@@ -57,3 +60,16 @@ Background photo: Honghe Hani rice terraces, Yunnan, China, by
 [Jialiang Gao](https://commons.wikimedia.org/wiki/File:Terrace_field_yunnan_china_denoised.jpg),
 licensed [CC BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0/).
 Attribution is in the page footer; keep it there if the photo stays.
+
+## Publishing discipline
+
+This repo is public and git history is permanent. Working artifacts - plans,
+notes, drafts, backups, scratch files - stay on disk and out of git. They are
+gitignored, and `.githooks/pre-commit` rejects them at commit time along with
+any unexpected new file at the repo root.
+
+Run `./scripts/setup.sh` once after cloning to enable the hook; git does not
+clone hooks. Override for a single commit with `ALLOW_ARTIFACTS=1 git commit`.
+
+Only `public/` is served, so repo docs are unreachable from the web regardless.
+Verify a deploy with `./scripts/check-site.sh`.

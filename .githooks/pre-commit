@@ -1,0 +1,45 @@
+#!/bin/sh
+# Blocks working artifacts from reaching a public repo.
+#
+# This repo is public. Plans, notes, handoffs, transcripts and scratch files
+# written while building the site are for the working directory only - git
+# history is permanent and a force-push does not fully undo publication.
+#
+# Enabled via core.hooksPath (see scripts/setup.sh). Override a single commit
+# with: ALLOW_ARTIFACTS=1 git commit ...
+
+[ "$ALLOW_ARTIFACTS" = "1" ] && exit 0
+
+staged=$(git diff --cached --name-only --diff-filter=A)
+[ -z "$staged" ] && exit 0
+
+fail=0
+
+# 1. Filenames that are working artifacts wherever they appear.
+artifacts=$(printf '%s\n' "$staged" | grep -Ei \
+  '(^|/)(PLAN|NOTES?|TODO|SCRATCH|HANDOFF|DRAFT|CONTEXT|TRANSCRIPT)[^/]*\.(md|txt|json)$|\.(bak|backup|orig|bundle|patch)$|(^|/)\.claude/|(^|/)scratch/|\.scratch\.')
+
+if [ -n "$artifacts" ]; then
+  echo "BLOCKED: working artifacts staged for a public repo:"
+  printf '  %s\n' $artifacts
+  fail=1
+fi
+
+# 2. Anything new at the repo root that is not on the allowlist. Site files
+#    belong in public/; new top-level files are usually notes by accident.
+allowed='^(\.githooks/|\.gitignore$|CLAUDE\.md$|README\.md$|LICENSE$|package\.json$|package-lock\.json$|wrangler\.jsonc$|public/|scripts/)'
+unexpected=$(printf '%s\n' "$staged" | grep -Ev "$allowed")
+
+if [ -n "$unexpected" ]; then
+  echo "BLOCKED: unexpected new paths (site files go in public/):"
+  printf '  %s\n' $unexpected
+  fail=1
+fi
+
+if [ "$fail" = "1" ]; then
+  echo
+  echo "If this is genuinely meant to be public:"
+  echo "  ALLOW_ARTIFACTS=1 git commit ..."
+  echo "and add it to the allowlist in .githooks/pre-commit."
+  exit 1
+fi
