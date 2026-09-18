@@ -1,0 +1,4 @@
+# Draft project pages: unlinked and kept out of search engines until they
+# have real content. Remove this block to publish them.
+/projects/*
+  X-Robots-Tag: noindex, nofollow

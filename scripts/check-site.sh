@@ -22,6 +22,11 @@ for f in CLAUDE.md README.md PLAN.md wrangler.jsonc package.json; do
   printf "  /%-16s %s\n" "$f" "$(curl -s -o /dev/null -w '%{http_code}' --max-time 25 "https://$host/$f")"
 done
 
+echo "== Draft project pages must carry noindex =="
+for f in projects/sonorasmiles/ projects/vogon/ projects/logbook/; do
+  printf "  /%-24s %s\n" "$f" "$(curl -sI --max-time 25 "https://$host/$f" | grep -i x-robots-tag | tr -d '\r' || echo MISSING)"
+done
+
 echo "== Certificate =="
 echo | openssl s_client -connect "$host:443" -servername "$host" 2>/dev/null \
   | openssl x509 -noout -issuer -dates 2>/dev/null | sed 's/^/  /'

@@ -113,3 +113,13 @@ footer {
 
 footer a { color: inherit; text-underline-offset: 2px; }
 footer a:hover { color: var(--ink); }
+
+/* --- Text pages (projects) - no background photo --- */
+
+body.page { justify-content: flex-start; }
+.page main { margin: 0 auto; }
+.page h1 { font-size: clamp(2rem, 7vw, 3rem); }
+.page h2 { font-size: 1.1rem; margin: 2rem 0 0.4rem; }
+.page .tagline { color: var(--ink-dim); }
+.back { margin: 0 0 2rem; font-size: 0.9rem; }
+.back a, .page main a { color: var(--ink-dim); text-underline-offset: 2px; }

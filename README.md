@@ -14,6 +14,8 @@ static `index.html` plus one stylesheet, served as-is.
 | `public/style.css` | The only stylesheet |
 | `public/hero.jpg` | Background photo (see credit below) |
 | `public/og.jpg` | Link-preview card, generated from `hero.jpg` |
+| `public/projects/*/` | Draft portfolio pages - unlinked, noindex (meta tag + `public/_headers`) |
+| `public/_headers` | Response headers; currently only the draft-page noindex |
 | `wrangler.jsonc` | Cloudflare Workers config |
 | `.githooks/` | pre-commit guardrail (see below) |
 | `scripts/` | `setup.sh` (enable hooks), `check-site.sh` (verify a deploy) |
