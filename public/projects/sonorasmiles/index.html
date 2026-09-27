@@ -3,27 +3,49 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<!-- Draft: unlinked and noindex until it has real content. Remove this
-     robots tag and the /projects/* block in _headers to publish. -->
-<meta name="robots" content="noindex, nofollow">
 <title>SonoraSmiles - Jesse Day</title>
+<meta name="description" content="A self-hosted baby-tracking app built with Claude for a bilingual family, from the newborn weeks to growth charts and milestones.">
+<link rel="canonical" href="https://jesse-day.com/projects/sonorasmiles/">
 <link rel="stylesheet" href="/style.css">
+<style>
+  .with-icon { display: flex; align-items: center; gap: 0.6em; }
+  .with-icon img { width: 1.2em; height: 1.2em; border-radius: 22%; }
+  .shots { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.75rem; margin: 1.5rem 0; }
+  .shots figure { margin: 0; }
+  .shots img { width: 100%; height: auto; display: block; border-radius: 12px; }
+  .shots figcaption { font-size: 0.8rem; color: var(--ink-dim); text-align: center; margin-top: 0.35rem; }
+  .note { font-size: 0.8rem; color: var(--ink-dim); }
+</style>
 </head>
 <body class="page">
 
 <main>
   <p class="back"><a href="/">Jesse Day</a></p>
-  <h1>SonoraSmiles</h1>
+  <h1 class="with-icon"><img src="icon.png" alt="" width="48" height="48">SonoraSmiles</h1>
   <p class="tagline">A self-hosted app two caregivers use from their phones to track a baby's first two years.</p>
 
-  <h2>The problem</h2>
-  <p class="soon">Coming soon.</p>
+  <p>When our boy was born and lost a bunch of birthweight, we chronicled every feed and dirty diaper in a book, and borrowed a baby scale from the lactation consultant. This book would end up under miscellaneous parental debris, we rarely had our hands free, we'd forget to update it, and we rarely ever looked at the data again after it became obvious that he was putting on weight like a silverback gorilla.</p>
+  <p>For round two, it took only a day of the book before my wife asked "can you make an app for this?" Thanks to Claude, I had a prototype in one night and could add features and bugfixes in real-time as she proposed them, such as inferred sleep cycles and AI image analysis of whether a poopy diaper needs an emergency visit to the pediatrician.</p>
 
-  <h2>Process: the product decisions</h2>
-  <p class="soon">Coming soon.</p>
+  <div class="shots">
+    <figure><img src="log.jpg" alt="Log screen with big buttons for feeds, diapers and measurements" width="390" height="780" loading="lazy"><figcaption>One-tap logging</figcaption></figure>
+    <figure><img src="bottle-sheet.jpg" alt="Bottle entry sheet pre-filled with the last amount" width="390" height="780" loading="lazy"><figcaption>Bottle, pre-filled</figcaption></figure>
+    <figure><img src="timeline.jpg" alt="Timeline of feeds and diapers, tagged by which parent logged them" width="390" height="780" loading="lazy"><figcaption>Timeline</figcaption></figure>
+  </div>
+  <div class="shots">
+    <figure><img src="reports.jpg" alt="Daily totals for breastfeeds, diapers and bottles" width="390" height="780" loading="lazy"><figcaption>Today</figcaption></figure>
+    <figure><img src="reports-feeding.jpg" alt="Daily breastfeeding minutes and bottle volume charts" width="390" height="780" loading="lazy"><figcaption>Feeding trends</figcaption></figure>
+    <figure><img src="sleep.jpg" alt="Sleep inferred from the gaps between feeds" width="390" height="780" loading="lazy"><figcaption>Sleep cycles</figcaption></figure>
+  </div>
+  <p>This was my first time building and maintaining a phone app. I registered a fly.io server, which costs only pennies a month for personal use. It was also interesting to bang my head against hardware constraints. For instance, we wanted hands-free voice logging, but Siri is intrinsically monolingual, which was a poor fit for our bilingual English and Mandarin Chinese family. We wound up with two solutions, an English-only Siri command, and an in-app button allowing any arbitrary mixture of English and Chinese via cheap Groq calls.</p>
+  <p>The most interesting design challenge was our transition from newborn stage, when the app was critical, to "ok, my baby is probably going to survive" around the one-month mark. With baby number two, I observed that we often lacked the bandwidth to appreciate the moment, so I prioritized periodic photo nudges (take a picture of your baby!), record-keeping like vaccine records, a built-in milestone tracker, and growth charts.</p>
 
-  <h2>The result</h2>
-  <p class="soon">Coming soon.</p>
+  <div class="shots">
+    <figure><img src="photos.jpg" alt="Photo gallery grouped by baby-month with monthly-shot badges" width="390" height="780" loading="lazy"><figcaption>Photos</figcaption></figure>
+    <figure><img src="checklists.jpg" alt="CDC milestone checklist by age bracket" width="390" height="780" loading="lazy"><figcaption>Milestones</figcaption></figure>
+    <figure><img src="growth.jpg" alt="Weight, height and head-circumference percentile charts" width="390" height="780" loading="lazy"><figcaption>Growth</figcaption></figure>
+  </div>
+  <p class="note">Screenshots are from a demo instance with synthetic data.</p>
 </main>
 
 </body>

@@ -1,4 +1,8 @@
 # Draft project pages: unlinked and kept out of search engines until they
-# have real content. Remove this block to publish them.
-/projects/*
+# have real content. Remove a page's block (and its robots meta tag) to
+# publish it.
+/projects/vogon/*
+  X-Robots-Tag: noindex, nofollow
+
+/projects/logbook/*
   X-Robots-Tag: noindex, nofollow

@@ -75,19 +75,19 @@ h1 {
   list-style: none;
   display: flex;
   flex-wrap: wrap;
-  gap: 0.6rem;
+  gap: 0.75rem;
   margin: 0;
   padding: 0;
 }
 
 .links a {
   display: inline-block;
-  padding: 0.4rem 1rem;
+  padding: 0.65rem 1.4rem;
   border: 1px solid var(--rule);
   border-radius: 999px;
   color: var(--ink);
   text-decoration: none;
-  font-size: 0.92rem;
+  font-size: 1.05rem;
   background: rgba(18, 24, 21, 0.3);
   backdrop-filter: blur(3px);
   transition: background 0.15s ease, border-color 0.15s ease;
@@ -97,6 +97,60 @@ h1 {
 .links a:focus-visible {
   background: rgba(244, 242, 236, 0.16);
   border-color: rgba(244, 242, 236, 0.6);
+}
+
+/* --- Project icons --- */
+
+.projects {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  margin: 0 0 2.75rem;
+}
+
+.project {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 210px;
+}
+
+.project a { display: block; border-radius: 16px; }
+
+.project img {
+  display: block;
+  width: 210px;
+  height: 280px;
+  object-fit: cover;
+  border-radius: 16px;
+  border: 1px solid rgba(244, 242, 236, 0.35);
+  box-shadow: 0 8px 28px rgba(10, 14, 12, 0.55);
+  transition: transform 0.15s ease;
+}
+
+.project a:hover img,
+.project a:focus-visible img { transform: translateY(-3px) scale(1.03); }
+
+.project h2 {
+  margin: 0.35rem 0 0;
+  font-size: 1.05rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+  text-align: center;
+  text-shadow: 0 1px 18px rgba(10, 14, 12, 0.6);
+}
+
+/* Project captions: always lowercase, always one line. */
+.project-caption {
+  margin: 0.15rem 0 0;
+  font-size: 0.8rem;
+  color: var(--ink-dim);
+  text-transform: lowercase;
+  font-style: italic;
+  white-space: nowrap;
+  text-align: center;
+  text-shadow: 0 1px 12px rgba(10, 14, 12, 0.6);
 }
 
 /* --- Attribution --- */
@@ -123,3 +177,17 @@ body.page { justify-content: flex-start; }
 .page .tagline { color: var(--ink-dim); }
 .back { margin: 0 0 2rem; font-size: 0.9rem; }
 .back a, .page main a { color: var(--ink-dim); text-underline-offset: 2px; }
+
+/* --- Phones: two project tiles per row, links on one row --- */
+
+@media (max-width: 480px) {
+  .tagline { margin-bottom: 1.25rem; }
+  .projects { gap: 1rem; margin-bottom: 1.5rem; }
+  .project { width: calc((100% - 1rem) / 2); }
+  .project img { width: 100%; height: auto; aspect-ratio: 3 / 4; border-radius: 14px; }
+  .project h2 { font-size: 1.1rem; }
+  .project-caption { font-size: 0.78rem; }
+  .links { flex-wrap: nowrap; gap: 0.4rem; }
+  .links li { flex: 1 1 0; }
+  .links a { display: block; text-align: center; padding: 0.55rem 0; font-size: 0.9rem; white-space: nowrap; }
+}
