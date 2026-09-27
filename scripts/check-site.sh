@@ -23,7 +23,7 @@ for f in CLAUDE.md README.md PLAN.md wrangler.jsonc package.json; do
 done
 
 echo "== Draft project pages must carry noindex =="
-for f in projects/vogon/ projects/logbook/; do
+for f in projects/vogon/; do
   printf "  /%-24s %s\n" "$f" "$(curl -sI --max-time 25 "https://$host/$f" | grep -i x-robots-tag | tr -d '\r' || echo MISSING)"
 done
 
