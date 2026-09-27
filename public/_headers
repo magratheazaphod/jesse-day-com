@@ -3,6 +3,3 @@
 # publish it.
 /projects/vogon/*
   X-Robots-Tag: noindex, nofollow
-
-/projects/logbook/*
-  X-Robots-Tag: noindex, nofollow
